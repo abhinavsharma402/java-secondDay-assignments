@@ -1,16 +1,8 @@
 package com.knoldus.view;
 
-import com.knoldus.controller.FileOperations;
-import com.knoldus.controller.LeapYearAfterRepublic;
-import com.knoldus.controller.ManLivedDuration;
+import com.knoldus.controller.*;
 
-import com.knoldus.controller.ZoneTime;
-import com.knoldus.controller.BirthDateDays;
-import com.knoldus.controller.StudentDetails;
-import com.knoldus.model.Address;
-import com.knoldus.model.LeapYear;
-import com.knoldus.model.ManLivedSeconds;
-import com.knoldus.model.Student;
+import com.knoldus.model.*;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
@@ -69,6 +61,16 @@ public class Driver {
         LocalDate localDate = LocalDate.of(1996, 06, 04);
         List<DayOfWeek> emptyList = new LinkedList<>();
         System.out.println(birthDateDaysObj.getBirthDateDays(localDate, emptyList));
+        System.out.println("-------------Question7-------------");
+       CrudOperations crudOperationsObj= new CrudOperations();
+        Users emp1 = new Users("Abhinav", 20, 1, "Delhi");
+        Users emp2 = new Users("Akash", 20, 1, "Delhi");
+       List<Users> userList=crudOperationsObj.create(emp1);
+       System.out.println(crudOperationsObj.read(userList));
+       crudOperationsObj.update(userList,emp2);
+        System.out.println(crudOperationsObj.read(userList));
+        crudOperationsObj.delete(userList,emp2);
+        System.out.println(crudOperationsObj.read(userList));
     }
 
 }
