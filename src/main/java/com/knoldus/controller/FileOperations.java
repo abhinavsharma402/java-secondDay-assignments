@@ -15,15 +15,16 @@ public class FileOperations implements ReadFile {
     public List<String> readData(String path) throws IOException {
         return Files.readAllLines(Path.of(path));
     }
-    public HashMap<String,Integer> getWordsCount(List<String> dataList){
 
-        HashMap<String,Integer> wordCount=new HashMap<>();
+    public HashMap<String, Integer> getWordsCount(List<String> dataList) {
+
+        HashMap<String, Integer> wordCount = new HashMap<>();
 
         dataList.stream()
-                .map(str-> Arrays.stream(str.split(" "))
-                        .map(word->
-                                wordCount.containsKey(word)?wordCount.replace(word,wordCount.get(word)+1)
-                                        :wordCount.put(word,1)
+                .map(str -> Arrays.stream(str.split(" "))
+                        .map(word ->
+                                wordCount.containsKey(word) ? wordCount.replace(word, wordCount.get(word) + 1)
+                                        : wordCount.put(word, 1)
 
                         )
 
