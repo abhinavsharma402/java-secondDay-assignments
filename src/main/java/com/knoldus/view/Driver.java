@@ -1,8 +1,17 @@
 package com.knoldus.view;
 
-import com.knoldus.controller.*;
-
-import com.knoldus.model.*;
+import com.knoldus.controller.BirthDateDays;
+import com.knoldus.controller.CrudOperations;
+import com.knoldus.controller.FileOperations;
+import com.knoldus.controller.LeapYearAfterRepublic;
+import com.knoldus.controller.ManLivedDuration;
+import com.knoldus.controller.StudentDetails;
+import com.knoldus.controller.ZoneTime;
+import com.knoldus.model.Address;
+import com.knoldus.model.LeapYear;
+import com.knoldus.model.ManLivedSeconds;
+import com.knoldus.model.Student;
+import com.knoldus.model.Users;
 
 import java.io.IOException;
 import java.time.DayOfWeek;
@@ -13,7 +22,9 @@ import java.util.List;
 import java.util.Optional;
 
 public class Driver {
-    public static void main(String[] args) throws IOException {
+
+    public static void main(String[] args) {
+
         System.out.println("-------------Question3-------------");
         ZoneTime zoneTimeObj = new ZoneTime();
         String zone = "Australia/Sydney";
@@ -40,37 +51,55 @@ public class Driver {
         Student student3 = new Student("krish", 1, 22, address2);
         List<Student> list = Arrays.asList(student1, student2, student3);
         StudentDetails studentDetailsObj = new StudentDetails();
-        studentDetailsObj.getStudentsNotHaveSecondaryAddress(list).stream()
+        studentDetailsObj.getStudentsNotHaveSecondaryAddress(list)
                 .forEach(student ->
                         System.out.println(student.getName() + " " + student.getAddress().getSecondaryAddress()
                                 + " " + student.getId() + " " + student.getAge()));
-        studentDetailsObj.getStudentsWithSpecifiedAddressAndName(list).stream()
+        studentDetailsObj.getStudentsWithSpecifiedAddressAndName(list)
                 .forEach(student ->
                         System.out.println(student.getName() + " " + student.getAddress().getSecondaryAddress()
                                 + " " + student.getId() + " " + student.getAge()));
         System.out.println("-------------Question6-------------");
         FileOperations fileOperationsObj = new FileOperations();
         try {
+
             List<String> content = fileOperationsObj.readData("src/main/resources/Demo");
             System.out.println(fileOperationsObj.getWordsCount(content));
+
         } catch (IOException io) {
-            io.getMessage();
+            io.printStackTrace();
+
         }
+
         System.out.println("-------------Question2-------------");
+
         BirthDateDays birthDateDaysObj = new BirthDateDays();
-        LocalDate localDate = LocalDate.of(1996, 06, 04);
+
+        LocalDate localDate = LocalDate.of(1996, 6, 4);
+
         List<DayOfWeek> emptyList = new LinkedList<>();
+
         System.out.println(birthDateDaysObj.getBirthDateDays(localDate, emptyList));
+
         System.out.println("-------------Question7-------------");
-       CrudOperations crudOperationsObj= new CrudOperations();
+        CrudOperations crudOperationsObj = new CrudOperations();
+
         Users emp1 = new Users("Abhinav", 20, 1, "Delhi");
+
         Users emp2 = new Users("Akash", 20, 1, "Delhi");
-       List<Users> userList=crudOperationsObj.create(emp1);
-       System.out.println(crudOperationsObj.read(userList));
-       crudOperationsObj.update(userList,emp2);
+
+        List<Users> userList = crudOperationsObj.create(emp1);
+
         System.out.println(crudOperationsObj.read(userList));
-        crudOperationsObj.delete(userList,emp2);
+
+        crudOperationsObj.update(userList, emp2);
+
         System.out.println(crudOperationsObj.read(userList));
+
+        crudOperationsObj.delete(userList, emp2);
+
+        System.out.println(crudOperationsObj.read(userList));
+
     }
 
 }
