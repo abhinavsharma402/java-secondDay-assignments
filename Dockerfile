@@ -1,4 +1,4 @@
 FROM ubuntu:16.04
 FROM openjdk:8-jre-alpine
-COPY target/java-secondDay-assignmet-1.0-SNAPSHOT.jar /java-secondDay-assignment.jar
+COPY target/java-secondDay-assignmets-1.0-SNAPSHOT.jar /java-secondDay-assignment.jar
 ENTRYPOINT exec java $* -jar /java-secondDay-assignment.jar
